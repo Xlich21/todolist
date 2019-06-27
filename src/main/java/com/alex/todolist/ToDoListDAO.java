@@ -11,9 +11,6 @@ public class ToDoListDAO {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "category")
-    private String category;
-
     @Column(name = "name")
     private String name;
 
@@ -36,14 +33,6 @@ public class ToDoListDAO {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 
     public String getName() {

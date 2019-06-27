@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <!--<link rel="stylesheet" name="text/css" href="${pageContext.request.contextPath}/style.css"/>-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="mytodo">My ToDO List</a>
+            <button class="navbar-toggler" name="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index">Home
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile">Profile</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</head>
+<body>
+<!-- Editable table -->
+<div class="card">
+    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
+    <div class="card-body">
+        <div id="table" class="table-editable">
+      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
+              class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
+            <table class="table table-bordered table-responsive-md table-striped text-center">
+                <thead>
+                <tr>
+                    <th class="text-center">Category</th>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">Adding Date</th>
+                    <th class="text-center">Expiration Date</th>
+                    <th class="text-center">Sort</th>
+                    <th class="text-center">Remove</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="pt-3-half" contenteditable="true"></td>
+                    <td class="pt-3-half" contenteditable="true"></td>
+                    <td class="pt-3-half" contenteditable="true"></td>
+                    <td class="pt-3-half" contenteditable="true"></td>
+                    <td class="pt-3-half" contenteditable="true"></td>
+                    <td class="pt-3-half">
+              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
+                                                                         aria-hidden="true"></i></a></span>
+                        <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
+                                                                                     aria-hidden="true"></i></a></span>
+                    </td>
+                    <td>
+              <span class="table-remove"><button name="button"
+                                                 class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- Editable table -->
+</body>
+</html>

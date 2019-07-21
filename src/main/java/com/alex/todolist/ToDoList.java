@@ -1,11 +1,12 @@
 package com.alex.todolist;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
+
 
 @Entity
-@Table(name = "todo_table", schema = "alex_fenichiu")
-public class ToDoListDAO {
+@Table(name = "todos", schema = "alex_fenichiu")
+public class ToDoList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,18 +15,17 @@ public class ToDoListDAO {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "category")
+    private String category;
+
     @Column(name = "description")
     private String description;
 
-    @Basic(optional = false)
-    @Column(name = "adding_date", insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date addingDate;
+    @Column(name = "adding_date")
+    private LocalDate addingDate;
 
-    @Basic(optional = false)
-    @Column(name = "expiration_date", insertable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date expirationDate;
+    @Column(name = "expiration_date")
+    private String expirationDate;
 
     public Integer getId() {
         return id;
@@ -51,19 +51,28 @@ public class ToDoListDAO {
         this.description = description;
     }
 
-    public Date getAddingDate() {
+
+    public LocalDate getAddingDate() {
         return addingDate;
     }
 
-    public void setAddingDate(Date addingDate) {
+    public void setAddingDate(LocalDate addingDate) {
         this.addingDate = addingDate;
     }
 
-    public Date getExpirationDate() {
+    public String getExpirationDate() {
         return expirationDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
+    public void setExpirationDate(String expirationDate) {
         this.expirationDate = expirationDate;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

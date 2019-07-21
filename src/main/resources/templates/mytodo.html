@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Register</title>
+    <title></title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -15,7 +15,7 @@
     <!--<link rel="stylesheet" name="text/css" href="${pageContext.request.contextPath}/style.css"/>-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="mytodo">My ToDO List</a>
+            <a class="navbar-brand" href="mytodo">My To Do List</a>
             <button class="navbar-toggler" name="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -29,57 +29,170 @@
                     <li class="nav-item">
                         <a class="nav-link" href="profile">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout">Logout</a>
-                    </li>
+
+                    <!--<li class="nav-item">-->
+                        <!--<a class="nav-link" href="logout">Logout</a>-->
+                    <!--</li>-->
                 </ul>
             </div>
         </div>
     </nav>
 </head>
 <body>
-<!-- Editable table -->
-<div class="card">
-    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Editable table</h3>
-    <div class="card-body">
-        <div id="table" class="table-editable">
-      <span class="table-add float-right mb-3 mr-2"><a href="#!" class="text-success"><i
-              class="fas fa-plus fa-2x" aria-hidden="true"></i></a></span>
-            <table class="table table-bordered table-responsive-md table-striped text-center">
-                <thead>
-                <tr>
-                    <th class="text-center">Category</th>
-                    <th class="text-center">Name</th>
-                    <th class="text-center">Description</th>
-                    <th class="text-center">Adding Date</th>
-                    <th class="text-center">Expiration Date</th>
-                    <th class="text-center">Sort</th>
-                    <th class="text-center">Remove</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td class="pt-3-half" contenteditable="true"></td>
-                    <td class="pt-3-half" contenteditable="true"></td>
-                    <td class="pt-3-half" contenteditable="true"></td>
-                    <td class="pt-3-half" contenteditable="true"></td>
-                    <td class="pt-3-half" contenteditable="true"></td>
-                    <td class="pt-3-half">
-              <span class="table-up"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-up"
-                                                                         aria-hidden="true"></i></a></span>
-                        <span class="table-down"><a href="#!" class="indigo-text"><i class="fas fa-long-arrow-alt-down"
-                                                                                     aria-hidden="true"></i></a></span>
-                    </td>
-                    <td>
-              <span class="table-remove"><button name="button"
-                                                 class="btn btn-danger btn-rounded btn-sm my-0">Remove</button></span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+
+<!-- Default auto-sizing form -->
+<form action="saveTodo" method="post" style="margin-top: 100px;">
+    <!-- Grid row -->
+    <div style="margin-left: 41px;" class="form-row align-items-center">
+        <!-- Grid column -->
+        <div class="col-auto">
+            <!-- Default input -->
+            <label class="sr-only" for="inlineFormInput">Nume</label>
+            <input type="text" name="name" class="form-control mb-2" id="inlineFormInput" placeholder="Nume">
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-auto">
+            <!-- Default input -->
+            <label class="sr-only" for="inlineFormInputGroup">Descriere</label>
+            <div class="input-group mb-2">
+                <input type="text" name="description" class="form-control py-0" id="inlineFormInputGroup" placeholder="Descriere">
+            </div>
+        </div>
+
+        <div style="margin-bottom: 9px;" class="col-auto">
+            <select name="category" class="browser-default custom-select">
+                <option selected>Alege categoria</option>
+                <option value="Acasa">Acasa</option>
+                <option value="Birou">Birou</option>
+                <option value="Cumparaturi">Cumparaturi</option>
+            </select>
+        </div>
+
+        <!--<div class="col-auto">-->
+        <div style="margin-bottom: 32px; margin-left: 8px" class="md-form">
+            <input name="expirationDate" type="date" id="inputMDEx" class="form-control">
+            <label for="inputMDEx">Data de expirare</label>
+        </div>
+
+            </div>
+
+        <!--</div>-->
+
+        <!-- Grid column -->
+        <div style="float: right;
+                    margin-top: -79px;
+                    margin-right: 579px;"
+             class="col-auto">
+            <button type="submit" class="btn btn-primary btn-md mt-0">Adauga</button>
         </div>
     </div>
-</div>
-<!-- Editable table -->
+    <!-- Grid row -->
+</form>
+<!-- Default auto-sizing form -->
+
+
+<table style="margin-left: 51px;" class="table">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nume</th>
+        <th scope="col">Descriere</th>
+        <th scope="col">Categorie</th>
+        <th scope="col">Data adaugarii</th>
+        <th scope="col">Data de expirare</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="t: ${todos}">
+        <th scope="row" th:text="${t.id}"></th>
+        <td th:text="${t.name}"></td>
+        <td th:text="${t.description}"></td>
+        <td th:text="${t.category}"></td>
+        <td th:text="${t.addingDate}"></td>
+        <td th:text="${t.expirationDate}"></td>
+        <td style="padding-right: 32px;">
+            <form action="deleteTodo" method="post">
+                <input name="id" hidden th:value="${t.id}">
+                <button type="submit" class="btn btn-danger">Done</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<!--&lt;!&ndash; Button trigger modal&ndash;&gt;-->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCart">Launch modal</button>-->
+
+<!--&lt;!&ndash; Modal: modalCart &ndash;&gt;-->
+<!--<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"-->
+     <!--aria-hidden="true">-->
+    <!--<div class="modal-dialog" role="document">-->
+        <!--<div class="modal-content">-->
+            <!--&lt;!&ndash;Header&ndash;&gt;-->
+            <!--<div class="modal-header">-->
+                <!--<h4 class="modal-title" id="myModalLabel">Your cart</h4>-->
+                <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+                    <!--<span aria-hidden="true">×</span>-->
+                <!--</button>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;Body&ndash;&gt;-->
+            <!--<div class="modal-body">-->
+
+                <!--<table class="table table-hover">-->
+                    <!--<thead>-->
+                    <!--<tr>-->
+                        <!--<th>#</th>-->
+                        <!--<th>Product name</th>-->
+                        <!--<th>Price</th>-->
+                        <!--<th>Remove</th>-->
+                    <!--</tr>-->
+                    <!--</thead>-->
+                    <!--<tbody>-->
+                    <!--<tr>-->
+                        <!--<th scope="row">1</th>-->
+                        <!--<td>Product 1</td>-->
+                        <!--<td>100$</td>-->
+                        <!--<td><a><i class="fas fa-times"></i></a></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<th scope="row">2</th>-->
+                        <!--<td>Product 2</td>-->
+                        <!--<td>100$</td>-->
+                        <!--<td><a><i class="fas fa-times"></i></a></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<th scope="row">3</th>-->
+                        <!--<td>Product 3</td>-->
+                        <!--<td>100$</td>-->
+                        <!--<td><a><i class="fas fa-times"></i></a></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<th scope="row">4</th>-->
+                        <!--<td>Product 4</td>-->
+                        <!--<td>100$</td>-->
+                        <!--<td><a><i class="fas fa-times"></i></a></td>-->
+                    <!--</tr>-->
+                    <!--<tr class="total">-->
+                        <!--<th scope="row">5</th>-->
+                        <!--<td>Total</td>-->
+                        <!--<td>400$</td>-->
+                        <!--<td></td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+
+            <!--</div>-->
+            <!--&lt;!&ndash;Footer&ndash;&gt;-->
+            <!--<div class="modal-footer">-->
+                <!--<button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>-->
+                <!--<button class="btn btn-primary">Checkout</button>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<!--&lt;!&ndash; Modal: modalCart &ndash;&gt;-->
+
+
 </body>
 </html>

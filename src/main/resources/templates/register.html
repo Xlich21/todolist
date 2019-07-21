@@ -1,49 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<!--<link rel="stylesheet" name="text/css" href="${pageContext.request.contextPath}/style.css"/>-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="mytodo">My To Do List</a>
+        <button class="navbar-toggler" name="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 <head>
-    <meta charset="UTF-8">
-    <title>Register</title>
+    <meta charset="utf-8">
+    <title>Create an account</title>
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.2/css/mdb.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${contextPath}/resources/css/common.css" rel="stylesheet">
 </head>
+
 <body>
 
 <!-- Default form register -->
-<form class="text-center border border-light p-5"
-      action="register" method="post">
+<form style="max-width: 30%;
+             margin-left: 35%;
+             margin-top: 100px;"
+      class="text-center border border-light p-5"
+      action="register-action" method="post">
 
     <p class="h4 mb-4">Sign up</p>
 
     <div class="form-row mb-4">
         <div class="col">
             <!-- First category -->
-            <input category="firstName" name="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First category">
+            <input name="name" id="defaultRegisterFormFirstName" class="form-control" placeholder="Name">
         </div>
         <div class="col">
             <!-- Last category -->
-            <input category="lastName" name="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last category">
+            <input name="username" id="defaultRegisterFormUsername" class="form-control" placeholder="Username">
         </div>
     </div>
 
     <!-- E-mail -->
-    <input category ="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+    <input name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
 
     <!-- Password -->
-    <input category="password" name="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <input name="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
     </small>
 
 
     <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block" name="submit">Sign in</button>
+    <!--<button class="btn btn-info my-4 btn-block" name="submit">Register</button>-->
+    <button style="margin-top: 19px; margin-left: 1px;" class="btn btn-lg btn-primary btn-block" name="submit" type="submit">Register</button>
+    <p style="margin-left: 10%;
+              margin-top: 20px;">
+            Already a member?
+        <a href="/login">Please log in!</a>
+    </p>
 
 </form>
+
+<div th:text="${message}"></div>
 <!-- Default form register -->
 </body>
 </html>
